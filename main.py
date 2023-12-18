@@ -5,7 +5,6 @@ from openpyxl.formatting import Rule
 from openpyxl.styles import Font, PatternFill, Border
 from openpyxl.styles.differential import DifferentialStyle
 from datetime import datetime, timezone
-import curses
 import linecache 
 import os
 FILE_TO_OPEN = input()
@@ -95,7 +94,9 @@ def creatematch():
         if not line:
             break
     save_the_woerk = os.path.basename(FILE_TO_OPEN).split('/')[-1]
-    workbook.save(save_the_woerk)
+    print(save_the_woerk)
+    supar_borgar = workbook.save(save_the_woerk)
+    print(supar_borgar)
         
         
     #print(count)
