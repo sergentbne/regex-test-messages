@@ -6,6 +6,13 @@ from openpyxl.styles import Font, PatternFill, Border
 from openpyxl.styles.differential import DifferentialStyle
 from datetime import datetime, timezone
 import curses
+import linecache 
+import os
+FILE_TO_OPEN = input()
+
+
+particular_line = linecache.getline(FILE_TO_OPEN, 86634) 
+file1 = open(FILE_TO_OPEN, 'r')
 
 class bcolors:
     HEADER = '\033[95m'
@@ -28,7 +35,6 @@ class SheetLetters:
 
 
 def creatematch():
-    file1 = open('/Users/louis/prog/regex-test-messages/imessage_export/aryane_lippe@icloud.txt', 'r')
     count = 0
     workbook = Workbook()
     sheet = workbook.active
@@ -38,13 +44,14 @@ def creatematch():
     sheet["D1"] = "Réaction?"
     sheet["E1"] = "Réponse?"
     lettercounter = 2
-
+    count = -1
     while True:
         count += 1
     # Get next line from file
         line = file1.readline()
-        if (line == "This message responded to an earlier message."):
-            sheet[SheetLetters.REPONSE] = "VRAI"
+        if (line == particular_line):
+            sheet[SheetLetters.REPONSE + str(lettercounter-1)] = "VRAI"
+            print(bcolors.OKGREEN + "bitch it worked" + bcolors.ENDC)
 
         time_and_date = line[:24]
         #time.sleep(1)
@@ -87,9 +94,8 @@ def creatematch():
     # end of file is reached
         if not line:
             break
-        #print(line)
-    workbook.save("hello.xlsx")
-    file1.close()
+        save_the_woerk = os.path.basename(FILE_TO_OPEN).split('/')[-1]
+        workbook.save(save_the_woerk)
     #print(count)
 
 
@@ -106,6 +112,9 @@ def create_workbook(path):
 
 
 if __name__ == "__main__":
-    create_workbook("hello.xlsx")
+    creatematch()
 
-creatematch()
+# importing required package 
+file1.close()
+
+
