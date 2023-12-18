@@ -94,8 +94,10 @@ def creatematch():
     # end of file is reached
         if not line:
             break
-        save_the_woerk = os.path.basename(FILE_TO_OPEN).split('/')[-1]
-        workbook.save(save_the_woerk)
+    save_the_woerk = os.path.basename(FILE_TO_OPEN).split('/')[-1]
+    workbook.save(save_the_woerk)
+        
+        
     #print(count)
 
 
