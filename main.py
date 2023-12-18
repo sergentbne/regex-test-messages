@@ -95,7 +95,7 @@ def creatematch():
             break
     save_the_woerk = os.path.basename(FILE_TO_OPEN).split('/')[-1]
     print(save_the_woerk)
-    supar_borgar = workbook.save(save_the_woerk)
+    supar_borgar = workbook.save(save_the_woerk+".xlsx")
     print(supar_borgar)
         
         
